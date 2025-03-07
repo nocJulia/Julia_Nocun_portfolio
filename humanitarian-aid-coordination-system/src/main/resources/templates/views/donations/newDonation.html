@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Create Donation</title>
+</head>
+<body>
+<main layout:fragment="content" class="container w-75 my-5 flex-grow-1">
+    <h2 class="text-center">Create Donation</h2>
+
+    <form action="/donations/save" method="POST" th:object="${donation}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input th:field="*{name}" id="name" type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="donationType" class="form-label">Donation Type</label>
+            <select th:field="*{donationType}" id="donationType" class="form-select" required>
+                <option value="" disabled selected>Select Donation Type</option>
+                <option th:value="CLOTHES">Clothes</option>
+                <option th:value="FOOD">Food</option>
+                <option th:value="TOYS">Toys</option>
+                <option th:value="HOUSEHOLD">Household</option>
+                <option th:value="FINANCIAL">Financial</option>
+                <option th:value="OTHER">Other</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input th:field="*{amount}" id="amount" type="number" class="form-control" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="currency" class="form-label">Currency</label>
+            <select th:field="*{currency}" id="currency" class="form-select" required>
+                <option value="" disabled selected>Select Currency</option>
+                <option th:value="PLN">PLN</option>
+                <option th:value="EUR">EUR</option>
+                <option th:value="USD">USD</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="size" class="form-label">Donation Size</label>
+            <select th:field="*{size}" id="size" class="form-select" required>
+                <option value="" disabled selected>Select Size</option>
+                <option th:value="NONE">None</option>
+                <option th:value="SMALL">Small</option>
+                <option th:value="MEDIUM">Medium</option>
+                <option th:value="LARGE">Large</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="weight" class="form-label">Weight (kg, optional)</label>
+            <input th:field="*{weight}" id="weight" type="number" class="form-control" step="0.01">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Donation</button>
+    </form>
+</main>
+</body>
+</html>

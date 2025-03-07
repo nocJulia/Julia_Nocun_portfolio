@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Predict Category</h1>
+<form action="{{ url_for('predict') }}" method="post">
+    <label for="feature1">Feature 1:</label>
+    <input type="text" name="feature1" required>
+    <label for="feature2">Feature 2:</label>
+    <input type="text" name="feature2" required>
+    <button type="submit">Predict</button>
+</form>
+{% endblock %}
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Home page</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2>Welcome to the Dashboard</h2>
+    <p>This is the main control center where you can monitor and manage various aspects of the incident
+        reporting system.</p>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title">Dashboard Overview</h5>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>Overview #1 - Brief description...</li>
+                <li>Overview #2 - Brief description...</li>
+                <li>Overview #3 - Brief description...</li>
+            </ul>
+        </div>
+    </div>
+</main>
+</body>
+</html>

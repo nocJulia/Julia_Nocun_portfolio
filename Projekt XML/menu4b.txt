@@ -1,0 +1,23 @@
+Album ID | Title                     | Singer          | Year | Price  | Genre            |
+1        | Harry's House             | Harry Styles    | 2022 | 52.99  | pop              |
+2        | 1-800-Oświecenie          | Taco Hemingway  | 2023 | 53.16  | hip-hop          |
+3        | Pocztówka z WWA, lato ’19 | Taco Hemingway  | 2019 | 43.99  | hip-hop          |
+4        | Ultraviolence             | Lana Del Rey    | 2014 | 209.90 | indie-rock       |
+5        | Lust for Life             | Lana Del Rey    | 2017 | 212.74 | dream pop        |
+6        | Harry Styles              | Harry Styles    | 2017 | 50.99  | soft rock        |
+7        | Mój dom                   | Kortez          | 2017 | 53.74  | alternative music|
+8        | Bumerang                  | Kortez          | 2015 | 45.00  | alternative music|
+9        | Lover                     | Taylor Swift    | 2019 | 73.65  | pop              |
+10       | folklore                  | Taylor Swift    | 2020 | 72.44  | pop              |
+11       | Midnights                 | Taylor Swift    | 2022 | 62.50  | synth pop        |
+12       | evermore                  | Taylor Swift    | 2020 | 172.20 | indie folk       |
+13       | Comfort and Happiness     | Dawid Posiadło  | 2013 | 34.99  | pop              |
+14       | Małomiasteczkowy          | Dawid Podsiadło | 2018 | 45.99  | pop              |
+15       | Lata dwudzieste           | Dawid Podsiadło | 2022 | 48.99  | pop              |
+16       | 19                        | Adele           | 2008 | 72.44  | pop              |
+17       | 21                        | Adele           | 2010 | 79.00  | soul             |
+18       | 25                        | Adele           | 2015 | 88.00  | soul             |
+19       | 30                        | Adele           | 2021 | 79.99  | jazz             |
+20       | A Girl Like Me            | Rihanna         | 2006 | 202.25 | pop              |
+21       | Talk That Talk            | Rihanna         | 2011 | 29.99  | pop              |
+22       | Anti                      | Rihanna         | 2016 | 69.99  | pop              |

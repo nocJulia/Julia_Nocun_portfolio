@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Data Points</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Feature 1</th>
+                <th>Feature 2</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data_point in data_points %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ data_point.feature1 }}</td>
+                <td>{{ data_point.feature2 }}</td>
+                <td>{{ data_point.category }}</td>
+                <td>
+                    <form action="{{ url_for('delete', record_id=data_point.id) }}" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

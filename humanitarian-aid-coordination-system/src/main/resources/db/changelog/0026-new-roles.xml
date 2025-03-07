@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0026-1" author="john1903">
+        <insert tableName="roles">
+            <column name="role_name" value="AUTHORITY"/>
+            <column name="description" value="Przedstawiciel władz"/>
+        </insert>
+        <insert tableName="users">
+            <column name="email" value="volunteer@volunteer.com"/>
+            <column name="password" value="$2a$12$MKaucArxPi51xxeMT5vOAuTBTSZfawN58lxW1T/Ye7SWYvJuAs.bu"/>
+            <column name="first_name" value="volunteer"/>
+            <column name="last_name" value="volunteer"/>
+            <column name="role_id" value="2"/>
+            <column name="user_type" value="VOLUNTEER"/>
+        </insert>
+        <insert tableName="users">
+            <column name="email" value="donor@donor.com"/>
+            <column name="password" value="$2a$12$80wAHDP7FHONKwd/ZIYZNeMIhpvygm0tawWyjCIkxEg.CrDVFFsuS"/>
+            <column name="first_name" value="donor"/>
+            <column name="last_name" value="donor"/>
+            <column name="role_id" value="3"/>
+            <column name="user_type" value="DONOR"/>
+        </insert>
+        <insert tableName="users">
+            <column name="email" value="logistician@logistician.com"/>
+            <column name="password" value="$2a$12$Ra7p.y.eHleIiDone3C7UOIW5K9eqH9TsNER3lNjkH0IKcShBIFBy"/>
+            <column name="first_name" value="logistician"/>
+            <column name="last_name" value="logistician"/>
+            <column name="role_id" value="4"/>
+            <column name="user_type" value="VOLUNTEER"/>
+        </insert>
+        <insert tableName="users">
+            <column name="email" value="coordinator@coordinator.com"/>
+            <column name="password" value="$2a$12$ZEyQot3oEP2tARyk1z26Sez784cshpC9DbXbDeq7ABgZvLw2/DKGy"/>
+            <column name="first_name" value="coordinator"/>
+            <column name="last_name" value="coordinator"/>
+            <column name="role_id" value="5"/>
+            <column name="user_type" value="VOLUNTEER"/>
+        </insert>
+        <insert tableName="users">
+            <column name="email" value="authority@authority.com"/>
+            <column name="password" value="$2a$12$b93pLg6cJQX4HejwFztRaOe2U5zVIIH6NOkOtkvpp/h3P6rJrYpEG"/>
+            <column name="first_name" value="authority"/>
+            <column name="last_name" value="authority"/>
+            <column name="role_id" value="6"/>
+            <column name="user_type" value="ADMIN"/>
+        </insert>
+    </changeSet>
+    <changeSet id="0026-2" author="johny1903">
+        <insert tableName="admins">
+            <column name="id" value="1"/>
+        </insert>
+        <insert tableName="volunteers">
+            <column name="id" value="2"/>
+        </insert>
+        <insert tableName="donors">
+            <column name="id" value="3"/>
+        </insert>
+        <insert tableName="volunteers">
+            <column name="id" value="4"/>
+        </insert>
+        <insert tableName="volunteers">
+            <column name="id" value="5"/>
+        </insert>
+        <insert tableName="admins">
+            <column name="id" value="6"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,20 +1,38 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl-PL">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moje Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Projekt zadanie 1</title>
+    <link rel="stylesheet" href="./menu1.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link id="favicon" rel="icon" type="image/png" href="./img/JN.png">    
 </head>
-<body>
-    <header>
-        <h1>Hi! I'm Julia Nocuń</h1>
-        <p> Third year student of Applied
-            Computer Science at TUL</p>
-    </header>
-    <section>
-        <h2>About me:</h2>
-        <p>I am a third year student of Applied
+<body onclick="toggleSVG()">
+    <div class="bg">
+        <img src="./img/dots.png" alt="dots" class="bg__img bg__img--dots">
+        <img src="./img/JN2.png" alt="JN-logo" class="bg__img bg__img--logo">
+    </div>
+    <div class="container">
+        <div class="logo">
+            <img src="./img/JN2.png" alt="JN-logo">
+        </div>
+        <header>
+            <h1>About me</h1>
+        </header>
+        <main>
+            <section>
+                <div class="people">
+                    <div class="person">
+                        <div class="person__img">
+                            <img src="./img/ja.jpg" alt="Julia Nocuń - zdjęcie">
+                        </div>
+                        <span class="person__name">Julia Nocuń</span>
+                    </div>
+            </section>
+            <section>
+                <p>I am a third year student of Applied
             Computer Science at Lodz University
             of Technology. I have knowledge of
             database creation and management,
@@ -25,6 +43,8 @@
             determined and motivated to develop
             my skills. My main interest is Data
             Science and Machine Learning</p>
-    </section>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

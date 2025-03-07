@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Assign Resource</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2 class="text-center mb-4">Assign Resource</h2>
+    <form action="/resource/create" method="post">
+        <!-- Donations Section -->
+        <div class="row g-3 mb-4">
+            <div class="col">
+                <div class="border rounded p-3 bg-light">
+                    <h3 class="mb-3">Donations</h3>
+                    <div th:if="${donationList.isEmpty()}" class="text-center text-secondary fw-bold">
+                        No donations available
+                    </div>
+                    <table class="table table-bordered table-striped" th:if="${!donationList.isEmpty()}">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>Select</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="donation : ${donationList}">
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="selectedDonation" th:value="${donation.id}" required>
+                                </div>
+                            </td>
+                            <td th:text="${donation.id}"></td>
+                            <td th:text="${donation.name}"></td>
+                            <td th:text="${donation.donationType}"></td>
+                            <td th:text="${#numbers.formatInteger(donation.amount, 0)}"></td>
+                            <input type="hidden" name="donationAmount" th:value="${#numbers.formatInteger(donation.amount, 0)}">
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="row g-3 mb-4">
+            <div class="col">
+                <div class="border rounded p-3 bg-light">
+                    <h3 class="mb-3">Notifications</h3>
+                    <div th:if="${notificationList.isEmpty()}" class="text-center text-secondary fw-bold">
+                        No notifications available
+                    </div>
+                    <table class="table table-bordered table-striped" th:if="${!notificationList.isEmpty()}">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>Select</th>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Amount of Victims</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="notification : ${notificationList}">
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="selectedNotification" th:value="${notification.id}" required>
+                                </div>
+                            </td>
+                            <td th:text="${notification.id}"></td>
+                            <td th:text="${#strings.length(notification.description) > 50 ? #strings.substring(notification.description, 0, 50) + '...' : notification.description}"></td>
+                            <td th:text="${notification.status}"></td>
+                            <td th:text="${notification.victims.size()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Vehicles Section -->
+        <div class="row g-3 mb-4">
+            <div class="col">
+                <div class="border rounded p-3 bg-light">
+                    <h3 class="mb-3">Available Vehicles</h3>
+                    <div th:if="${vehicles.isEmpty()}" class="text-center text-secondary fw-bold">
+                        No vehicles available
+                    </div>
+                    <table class="table table-bordered table-striped" th:if="${!vehicles.isEmpty()}">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>Select</th>
+                            <th>ID</th>
+                            <th>Registry Number</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Boot Capacity</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="vehicle : ${vehicles}">
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="selectedVehicle" th:value="${vehicle.id}" required>
+                                </div>
+                            </td>
+                            <td th:text="${vehicle.id}"></td>
+                            <td th:text="${vehicle.registryNumber}"></td>
+                            <td th:text="${vehicle.brand}"></td>
+                            <td th:text="${vehicle.model}"></td>
+                            <td th:text="${vehicle.bootCapacity}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success" th:disabled="${donationList.isEmpty() || notificationList.isEmpty() || vehicles.isEmpty()}">Submit Selection</button>
+        </div>
+    </form>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

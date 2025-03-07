@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+  <title>Volunteer Account Details</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+  <h2 class="text-center">Volunteer Account Details</h2>
+
+  <div class="my-4">
+    <h4>Volunteer Information</h4>
+    <form method="POST" th:action="@{/dashboard/volunteerAccountDetails/update}">
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">First Name</label>
+        <div class="col-sm-9">
+          <input type="text" name="firstName" class="form-control" th:value="${volunteer.firstName}" required>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Last Name</label>
+        <div class="col-sm-9">
+          <input type="text" name="lastName" class="form-control" th:value="${volunteer.lastName}" required>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">E-mail</label>
+        <div class="col-sm-9">
+          <input type="email" name="email" class="form-control" th:value="${volunteer.email}" readonly>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Phone Number</label>
+        <div class="col-sm-9">
+          <input type="text" name="phoneNumber" class="form-control" th:value="${volunteer.phoneNumber}">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Skills</label>
+        <div class="col-sm-9">
+          <textarea name="skills" class="form-control" rows="3" th:text="${volunteer.skills}"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Status</label>
+        <div class="col-sm-9">
+          <select name="active" class="form-select">
+            <option th:value="true" th:selected="${volunteer.active}">ACTIVE</option>
+            <option th:value="false" th:selected="!${volunteer.active}">ARCHIVED</option>
+          </select>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </form>
+
+    <div class="row mb-3 mt-3">
+      <label class="col-sm-3 col-form-label">Location</label>
+      <div class="col-sm-9">
+        <div th:if="${volunteer.location == null}" class="form-control">
+          <p class="mb-0">Location not assigned</p>
+        </div>
+        <div th:if="${volunteer.location != null}" class="form-control">
+          <p class="mb-1"><strong>Latitude:</strong> <span th:text="${volunteer.location.latitude}"></span></p>
+          <p class="mb-1"><strong>Longitude:</strong> <span th:text="${volunteer.location.longitude}"></span></p>
+          <p class="mb-1"><strong>Description:</strong> <span th:text="${volunteer.location.description}"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <a th:href="@{/locations/newVolunteer(volunteerId=${volunteer.id})}" class="btn btn-primary">Change Location</a>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <h4>Assigned Notifications</h4>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:if="${volunteer.notifications.isEmpty()}">
+        <td colspan="2" class="text-center">No notifications assigned</td>
+      </tr>
+      <tr th:each="notification : ${volunteer.notifications}">
+        <td th:text="${notification.id}"></td>
+        <td th:text="${notification.description}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+</body>
+</html>

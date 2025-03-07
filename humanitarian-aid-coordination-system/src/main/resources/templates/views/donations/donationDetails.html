@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Donation Details</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2 class="text-center">Donation Details</h2>
+
+    <div class="my-4">
+        <h4>Donation Information</h4>
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <th scope="row">Name</th>
+                <td th:text="${donation.name}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Donation Type</th>
+                <td th:text="${donation.donationType}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Amount</th>
+                <td th:text="${donation.amount}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Currency</th>
+                <td th:text="${donation.currency}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Donation Size</th>
+                <td th:text="${donation.size}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Weight (kg)</th>
+                <td th:text="${donation.weight}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Donation Date</th>
+                <td th:text="${formattedDonationDate}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Donation Status</th>
+                <td th:text="${donation.status}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Donor ID</th>
+                <td th:text="${donation.donorId}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="my-4">
+        <h4>Update Status</h4>
+        <div class="row mb-3">
+            <label for="newStatus" class="col-sm-3 col-form-label">New Status</label>
+            <div class="col-sm-9">
+                <form method="POST" th:action="@{/dashboard/donations/{id}/updateStatus(id=${donation.id})}">
+                    <select id="newStatus" name="newStatus" class="form-select" required>
+                        <option value="" disabled th:selected="${donation.status == null}">Please select</option>
+                        <option th:value="PENDING" th:selected="${donation.status == 'PENDING'}">PENDING</option>
+                        <option th:value="ASSIGNED" th:selected="${donation.status == 'ASSIGNED'}">ASSIGNED</option>
+                        <option th:value="IN_TRANSIT" th:selected="${donation.status == 'IN_TRANSIT'}">IN_TRANSIT</option>
+                        <option th:value="DELIVERED" th:selected="${donation.status == 'DELIVERED'}">DELIVERED</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-2">Update Status</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a th:href="@{/dashboard/donations}" class="btn btn-outline-secondary">Back to List</a>
+    </div>
+</main>
+</body>
+</html>

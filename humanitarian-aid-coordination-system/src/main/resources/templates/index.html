@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<head>
+  <title>Home page</title>
+</head>
+<body>
+<main layout:fragment="content" class="d-flex justify-content-center align-items-center flex-grow-1 py-5">
+  <div class="text-center">
+    <h1 class="display-4 text-dark">Welcome to the Incident Reporting System</h1>
+    <p class="lead text-muted">Quickly report incidents to ensure safety for everyone.</p>
+    <a th:href="@{/notifications/new}" class="btn btn-outline-primary btn-lg">Report an Incident</a>
+  </div>
+</main>
+</body>
+</html>
+
+

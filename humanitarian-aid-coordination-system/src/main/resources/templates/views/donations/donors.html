@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Donors</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2>Donors</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-mail</th>
+            <th>State</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${donors.isEmpty()}">
+            <td colspan="6" class="text-center">No donors found</td>
+        </tr>
+        <tr th:each="donor : ${donors}">
+            <td th:text="${donor.id}"></td>
+            <td th:text="${donor.firstName}"></td>
+            <td th:text="${donor.lastName}"></td>
+            <td th:text="${donor.email}"></td>
+            <td th:text="${donor.active ? 'ACTIVE' : 'ARCHIVED'}"></td>
+            <td class="text-center">
+                <a th:href="@{/dashboard/donors/details/{id}(id=${donor.id})}"
+                   class="btn btn-outline-primary btn-sm">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

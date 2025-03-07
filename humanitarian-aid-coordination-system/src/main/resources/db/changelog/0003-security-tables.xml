@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet id="0003-1" author="securityAndAuthentication">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0003-2" author="securityAndAuthentication">
+        <createTable tableName="roles">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role_name" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0003-3" author="securityAndAuthentication">
+        <createTable tableName="volunteers">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="skills" type="VARCHAR(500)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0003-4" author="securityAndAuthentication">
+        <addForeignKeyConstraint
+                baseTableName="users"
+                baseColumnNames="role_id"
+                constraintName="fk_users_role_id_roles_id"
+                referencedTableName="roles"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="0003-5" author="securityAndAuthentication">
+        <addForeignKeyConstraint
+                baseTableName="volunteers"
+                baseColumnNames="id"
+                constraintName="fk_volunteers_id_users_id"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="0003-6" author="securityAndAuthentication">
+        <insert tableName="roles">
+            <column name="role_name">ADMIN</column>
+            <column name="description">Administrator systemu</column>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name">VOLUNTEER</column>
+            <column name="description">Wolontariusz</column>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name">DONOR</column>
+            <column name="description">Darczyńca</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="0003-7" author="coordination-system">
+        <createTable tableName="donors">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="organization_name" type="VARCHAR(200)"/>
+            <column name="donation_history" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0003-8" author="coordination-system">
+        <createTable tableName="admins">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="department" type="VARCHAR(100)"/>
+            <column name="permission_level" type="INT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0003-9" author="coordination-system">
+        <addForeignKeyConstraint
+                baseTableName="donors"
+                baseColumnNames="id"
+                constraintName="fk_donors_id_users_id"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="0003-10" author="coordination-system">
+        <addForeignKeyConstraint
+                baseTableName="admins"
+                baseColumnNames="id"
+                constraintName="fk_admins_id_users_id"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

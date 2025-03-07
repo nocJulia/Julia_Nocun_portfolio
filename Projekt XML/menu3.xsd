@@ -1,0 +1,348 @@
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="musicShop">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="albums" minOccurs="1" maxOccurs="unbounded"/>
+        <xsd:element ref="musicLabels" minOccurs="1" maxOccurs="unbounded"/>
+        <xsd:element ref="Artists" minOccurs="1" maxOccurs="unbounded"/>
+        <xsd:element ref="voiceTypes" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+    <xsd:unique name="uniqueAlbumId">
+      <xsd:selector xpath="./albums/album"/>
+      <xsd:field xpath="@id"/>
+    </xsd:unique>
+    <xsd:key name="musicLabelId">
+      <xsd:selector xpath="./musicLabels/musicLabel"/>
+      <xsd:field xpath="@musicLabelId"/>
+    </xsd:key>
+    <xsd:keyref name="albumMusicLabelRef" refer="musicLabelId">
+      <xsd:selector xpath="./albums/album"/>
+      <xsd:field xpath="@musicLabelIdRef"/>
+    </xsd:keyref>
+    <xsd:key name="singerId">
+      <xsd:selector xpath="./Artists/Artist"/>
+      <xsd:field xpath="@singerId"/>
+    </xsd:key>
+    <xsd:keyref name="singerAlbumRef" refer="singerId">
+      <xsd:selector xpath="./albums/album/Singer"/>
+      <xsd:field xpath="@singerIdRef"/>
+    </xsd:keyref>
+    <xsd:key name="voiceId">
+      <xsd:selector xpath="./voiceTypes/Type"/>
+      <xsd:field xpath="@voiceId"/>
+    </xsd:key>
+    <xsd:keyref name="voiceSingerRef" refer="voiceId">
+      <xsd:selector xpath="./Artists/Artist/voiceType"/>
+      <xsd:field xpath="@voiceRef"/>
+    </xsd:keyref>
+  </xsd:element>
+  <xsd:element name="albums">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="album" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="album">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Title"/>
+        <xsd:element ref="Singer"/>
+        <xsd:element ref="releaseYear"/>
+        <xsd:element ref="price"/>
+        <xsd:element ref="numberOfSongs" minOccurs="0"/>
+        <xsd:element ref="length" minOccurs="0"/>
+        <xsd:element ref="type"/>
+        <xsd:element ref="genre"/>
+        <xsd:element ref="albumCode"/>
+        <xsd:element ref="version"/>
+      </xsd:sequence>
+      <xsd:attribute name="id" type="xsd:string" use="required"/>
+      <xsd:attribute type="xsd:string" name="musicLabelIdRef" use="required"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Title" type="xsd:string"/>
+  <xsd:element name="Singer">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute type="xsd:string" name="singerIdRef" use="optional"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="releaseYear" type="xsd:gYear"/>
+  <xsd:simpleType name="priceType">
+    <xsd:restriction base="xsd:decimal">
+      <xsd:totalDigits value="10" />
+      <xsd:fractionDigits value="2" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="price">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="priceType">
+          <xsd:attribute type="xsd:string" name="currency" use="optional"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="nofsType">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1" />
+      <xsd:maxInclusive value="100" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="numberOfSongs" type="nofsType"/>
+  <xsd:simpleType name="lengthType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2,3}:\d{2}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="length" type="lengthType"/>
+  <xsd:simpleType name="formatType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="CD"/>
+      <xsd:enumeration value="vinyl"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="type" type="formatType"/>
+  <xsd:simpleType name="genreType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="pop"/>
+      <xsd:enumeration value="hip-hop"/>
+      <xsd:enumeration value="indie-rock"/>
+      <xsd:enumeration value="dream pop"/>
+      <xsd:enumeration value="soft rock"/>
+      <xsd:enumeration value="alternative music"/>
+      <xsd:enumeration value="synth pop"/>
+      <xsd:enumeration value="indie folk"/>
+      <xsd:enumeration value="soul"/>
+      <xsd:enumeration value="jazz"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="genre" type="genreType"/>
+  <xsd:simpleType name="standardType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[A-Z]{2}/\d{4}-[A-Z]{2}/\d{4}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="albumCode">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute type="standardType" name="standard" use="required"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="versionType">
+    <xsd:restriction base="xsd:decimal">
+      <xsd:totalDigits value="2" />
+      <xsd:fractionDigits value="1" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="version" type="versionType"/>
+   <xsd:element name="musicLabels">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="musicLabel" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+   <xsd:element name="musicLabel">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Name"/>
+        <xsd:element ref="YearFounded"/>
+        <xsd:element ref="location"/>
+        <xsd:element ref="Foundator"/>
+      </xsd:sequence>
+      <xsd:attribute type="xsd:string" name="musicLabelId" use="required"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Name" type="xsd:string"/>
+  <xsd:element name="YearFounded" type="xsd:gYear"/>
+  <xsd:element name="location">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="country"/>
+        <xsd:element ref="countryCode"/>
+        <xsd:element ref="state"/>
+        <xsd:element ref="city"/>
+        <xsd:element ref="postalCode"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="country" type="xsd:string"/>
+  <xsd:simpleType name="codeType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="ISO\d{4}-\d{1}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="countryCode">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute type="codeType" name="codeStandard" use="required"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="state" type="xsd:string"/>
+  <xsd:element name="city" type="xsd:string"/>
+  <xsd:simpleType name="postalType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}-\d{3}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="postalCode" type="postalType"/>
+  <xsd:element name="Foundator">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="FoundatorName"/>
+        <xsd:element ref="isAlive"/>
+        <xsd:element ref="kids"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="FoundatorName" type="xsd:string"/>
+  <xsd:simpleType name="tfType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="true"/>
+      <xsd:enumeration value="false"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="isAlive" type="tfType"/>
+  <xsd:element name="kids" type="xsd:int"/>
+  <xsd:element name="Artists">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Artist" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Artist">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Names"/>
+        <xsd:element ref="dateOfBirth"/>
+        <xsd:element ref="placeOfBirth"/>
+        <xsd:element ref="parents"/>
+        <xsd:element ref="numberOfAlbums"/>
+        <xsd:element ref="height"/>
+        <xsd:element ref="voiceType"/>
+      </xsd:sequence>
+      <xsd:attribute type="xsd:string" name="singerId" use="required"/>
+    </xsd:complexType>
+    </xsd:element>
+   <xsd:element name="Names">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="firstName"/>
+        <xsd:element ref="surname"/>
+        <xsd:element ref="pseudonym" minOccurs="0"/>
+      </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+  <xsd:element name="firstName" type="xsd:string"/>
+  <xsd:element name="surname" type="xsd:string"/>
+  <xsd:element name="pseudonym" type="xsd:string"/>
+  <xsd:element name="dateOfBirth" type="xsd:date"/>
+  <xsd:element name="placeOfBirth">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="country"/>
+        <xsd:element ref="countryCode"/>
+        <xsd:element ref="state"/>
+        <xsd:element ref="city"/>
+        <xsd:element ref="postalCode"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="parents">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="mother"/>
+        <xsd:element ref="father"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="genderType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="female"/>
+      <xsd:enumeration value="male"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="mother">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute type="genderType" name="gender" use="optional"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="father">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute type="genderType" name="gender" use="optional"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element> 
+  <xsd:element name="numberOfAlbums" type="xsd:int"/>
+  <xsd:simpleType name="heightType">
+    <xsd:restriction base="xsd:decimal">
+      <xsd:totalDigits value="3"/>
+      <xsd:fractionDigits value="2"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="height">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="heightType">
+          <xsd:attribute type="xsd:string" name="unit" use="required"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="voiceType">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute type="xsd:string" name="voiceRef" use="required"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="voiceTypes">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Type" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Type">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="name"/>
+        <xsd:element ref="male"/>
+        <xsd:element ref="female"/>
+        <xsd:element ref="scale"/>
+      </xsd:sequence>
+      <xsd:attribute type="xsd:string" name="voiceId" use="required"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="name" type="xsd:string"/>
+  <xsd:element name="male" type="tfType"/>
+  <xsd:element name="female" type="tfType"/>
+  <xsd:simpleType name="scaleType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[a-zA-Z]-[a-zA-Z]"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="scale" type="scaleType"/>
+  </xsd:schema>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Donor Account Details</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2 class="text-center">Donor Account Details</h2>
+
+    <div class="my-4">
+        <h4>Account Information</h4>
+        <form method="POST" th:action="@{/dashboard/donorAccountDetails/update}">
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" name="firstName" class="form-control" th:value="${donor.firstName}" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="text" name="lastName" class="form-control" th:value="${donor.lastName}" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">E-mail</label>
+                <div class="col-sm-9">
+                    <input type="email" name="email" class="form-control" th:value="${donor.email}" readonly>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Phone Number</label>
+                <div class="col-sm-9">
+                    <input type="text" name="phoneNumber" class="form-control" th:value="${donor.phoneNumber}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Organization Name</label>
+                <div class="col-sm-9">
+                    <input type="text" name="organizationName" class="form-control"
+                           th:value="${donor.organizationName}">
+                </div>
+            </div>
+            <div class="row mb-3" th:if="${donor.personalId == null || donor.personalId == ''}">
+                <label class="col-sm-3 col-form-label">Personal ID</label>
+                <div class="col-sm-9">
+                    <input type="text" name="personalId" class="form-control" th:value="${donor.personalId}">
+                </div>
+            </div>
+            <div class="row mb-3" th:unless="${donor.personalId == null || donor.personalId == ''}">
+                <label class="col-sm-3 col-form-label">Personal ID</label>
+                <div class="col-sm-9">
+                    <input type="text" name="personalId" class="form-control" th:value="${donor.personalId}" readonly>
+                </div>
+            </div>
+            <div class="row mb-3" th:if="${donor.birthDate == null}">
+                <label class="col-sm-3 col-form-label">Birth Date</label>
+                <div class="col-sm-9">
+                    <input type="datetime-local" name="birthDate" class="form-control" th:value="${donor.birthDate}">
+                </div>
+            </div>
+            <div class="row mb-3" th:unless="${donor.birthDate == null}">
+                <label class="col-sm-3 col-form-label">Birth Date</label>
+                <div class="col-sm-9">
+                    <input type="text" name="birthDate" class="form-control" th:value="${donor.birthDate}" readonly>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="gender" class="col-sm-3 col-form-label">Gender</label>
+                <div class="col-sm-9">
+                    <select id="gender" name="gender" class="form-select">
+                        <option value="" th:selected="${donor.gender == null || donor.gender == ''}">Unspecified
+                        </option>
+                        <option value="M" th:selected="${donor.gender} == 'M'">Male</option>
+                        <option value="F" th:selected="${donor.gender} == 'F'">Female</option>
+                        <option value="O" th:selected="${donor.gender} == 'O'">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Donation History</label>
+                <div class="col-sm-9">
+                    <input type="text" name="donationHistory" class="form-control" th:value="${donor.donationHistory}"
+                           readonly>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="my-4">
+        <h4>Donations Made</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Size</th>
+                <th>Weight (kg)</th>
+                <th>Donation Date</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${donor.donations.isEmpty()}">
+                <td colspan="9" class="text-center">No donations found</td>
+            </tr>
+            <tr th:each="donation : ${donor.donations}">
+                <td th:text="${donation.id}"></td>
+                <td th:text="${donation.name}"></td>
+                <td th:text="${donation.donationType}"></td>
+                <td th:text="${donation.amount}"></td>
+                <td th:text="${donation.currency}"></td>
+                <td th:text="${donation.size}"></td>
+                <td th:text="${donation.weight}"></td>
+                <td th:text="${donation.donationDate}"></td>
+                <td th:text="${donation.status}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

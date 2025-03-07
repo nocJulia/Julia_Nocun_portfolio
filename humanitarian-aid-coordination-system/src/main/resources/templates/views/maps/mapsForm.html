@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<head>
+    <title>Add Location</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+
+</head>
+<body>
+
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h1>Add New Location</h1>
+    <form th:action="@{/locations/save(modelId=${modelId})}" method="post" onsubmit="return validateForm()">
+        <div id="map" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
+
+        <input type="hidden" id="latitude" name="latitude" th:value="${location.latitude}"/>
+        <input type="hidden" id="longitude" name="longitude" th:value="${location.longitude}"/>
+        <input type="hidden" name="locationType" th:value="${location.locationType}"/>
+        <input type="hidden" name="modelId" th:value="${modelId}"/>
+
+        <button type="submit">Save Location</button>
+    </form>
+
+    <p id="errorMessage" class="error" style="display:none;">Please select a location on the map.</p>
+
+    <script>
+        var map = L.map('map').setView([52.229, 21.012], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var marker = L.marker([52.229, 21.012], {draggable: true}).addTo(map);
+
+        var _geocoderType = L.Control.Geocoder.nominatim();
+        var geocoder = L.Control.geocoder({
+            geocoder: _geocoderType
+        }).addTo(map);
+
+        marker.on('moveend', function (e) {
+            var position = e.target.getLatLng();
+            document.getElementById('latitude').value = position.lat;
+            document.getElementById('longitude').value = position.lng;
+        });
+
+        map.on('click', function (e) {
+            marker.setLatLng(e.latlng);
+            document.getElementById('latitude').value = e.latlng.lat;
+            document.getElementById('longitude').value = e.latlng.lng;
+        });
+
+        function validateForm() {
+            var latitude = document.getElementById('latitude').value;
+            var longitude = document.getElementById('longitude').value;
+
+            if (!latitude || !longitude || latitude==='0.0' || longitude === '0.0') {
+                document.getElementById('errorMessage').style.display = "block";
+                return false;
+            }
+            document.getElementById('errorMessage').style.display = "none";
+            return true;
+        }
+    </script>
+</main>
+
+</body>
+</html>
+

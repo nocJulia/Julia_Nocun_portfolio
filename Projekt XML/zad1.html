@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt zadanie 1</title>
+    <link rel="stylesheet" href="./menu1.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link id="favicon" rel="icon" type="image/png" href="./img/JN.png">    
+</head>
+<body onclick="toggleSVG()">
+    <div class="bg">
+        <img src="./img/dots.png" alt="dots" class="bg__img bg__img--dots">
+        <img src="./img/JN2.png" alt="JN-logo" class="bg__img bg__img--logo">
+    </div>
+    <div class="container">
+        <div class="logo">
+            <img src="./img/JN2.png" alt="JN-logo">
+        </div>
+        <header>
+            <h1>Informacje o autorce!</h1>
+            <p>Najważniejsza w moim życiu jest muzyka. Szególnie ważna jest dla mnie piosenka
+                <a href="https://youtu.be/lVnzO7opqNs?si=q_tv0rFf4JDvNe4s" target="_blank">
+                    Matilda
+                </a>
+            </p>
+        </header>
+        <main>
+            <section>
+                <div class="people">
+                    <div class="person">
+                        <div class="person__img">
+                            <img src="./img/ja.jpg" alt="Julia Nocuń - zdjęcie">
+                        </div>
+                        <span class="person__name">Julia Nocuń</span>
+                    </div>
+                    <div class="person">
+                        <div class="person__img person__img--svg">
+                            <svg id="svgContainer" height="200" width="100" xmlns="http://www.w3.org/2000/svg" onclick="changeGradientColor()">
+
+                                <defs>
+                                  <linearGradient id="myGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#e6f9ff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#80dfff;stop-opacity:1" />
+                                  </linearGradient>
+                                </defs>
+                              
+                                <!-- Tułów-->
+                                <path d="M30 150 A20 20 0 1 0 70 150" fill="url(#myGradient)" stroke="#80dfff" transform="rotate(180 50 150)" />
+                              
+                                <!-- Głowa -->
+                                <ellipse cx="50" cy="110" rx="15" ry="20" fill="#ffe6cc" stroke="#ffe6cc" />
+                              
+                                <!-- Włosy -->
+                                <ellipse cx="50" cy="88" rx="7" ry="10" fill="#8B4513" stroke="#8B4513" 
+                                transform="rotate(45 40 80)"/>
+                                <ellipse cx="50" cy="88" rx="7" ry="10" fill="#8B4513" stroke="#8B4513" 
+                                transform="rotate(135 53 93)"/>
+                              
+                                <circle cx="50" cy="80" r="8" fill="#8B4513" stroke="#8B4513" />
+                                
+                                <!-- Oczy i usta -->
+                                
+                                <ellipse cx="45" cy="107" rx="2" ry="4" fill="white" />
+                                <ellipse cx="55" cy="107" rx="2" ry="4" fill="white" />
+                                <ellipse cx="45" cy="107" rx="1" ry="2" fill="#663300" />
+                                <ellipse cx="55" cy="107" rx="1" ry="2" fill="#663300" />
+                                
+                                <path d="M45 115 Q50 120 55 115" fill="red" stroke="red" />
+                              </svg>
+
+                              <script>
+                                function changeGradientColor() {
+                                  var gradient = document.getElementById("myGradient");
+                              
+                                  var color1 = getRandomColor();
+                                  var color2 = getRandomColor();
+                              
+                                  gradient.children[0].style.stopColor = color1;
+                                  gradient.children[1].style.stopColor = color2;
+                                }
+                              
+                                function getRandomColor() {
+                                  var letters = '0123456789ABCDEF';
+                                  var color = '#';
+                                  for (var i = 0; i < 6; i++) {
+                                    color += letters[Math.floor(Math.random() * 16)];
+                                  }
+                                  return color;
+                                }
+
+                                var svgVisible = false;
+
+                                function toggleSVG() {
+                                    var svgContainer = document.getElementById("svgContainer");
+                                    svgVisible = !svgVisible;
+                                    svgContainer.style.display = svgVisible ? "block" : "none";
+                                }
+                              </script>
+                              
+                        </div>
+                        <span class="person__name">Obrazek SVG</span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <p>Uwielbiam czytać książki, szczególnie kryminały.</p>
+                <p>Mam młodszą siostrę Tosię i psa Kokę.</p>
+                <p>Interesuję się psychologią, życiem zero-waste, naturalnymi kosmetykami i materiałami, makijażem oraz kuchnią wegańską.</p>
+                <p>Gdyby pieniądze nie miały znaczenia chciałabym założyć swoją kawiarnię i winiarnię, 
+                    ponieważ kocham kawusie i dobre winko oraz interesuje mnie proces ich przygotowywania i produkcji.</p>
+                <p>Marzę o tym, aby kiedyś zamieszkać we Włoszech i posiadać mały górski domek na Islandii.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Resources Report</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2>Generate Resources Report</h2>
+
+    <form th:action="@{/dashboard/reports/resources}" method="post" class="mb-4">
+        <button type="submit" class="btn btn-primary">Generate Report</button>
+    </form>
+
+</main>
+</body>
+</html>

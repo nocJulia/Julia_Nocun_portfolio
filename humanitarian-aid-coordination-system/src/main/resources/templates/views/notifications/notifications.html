@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Notifications</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2>Notifications</h2>
+
+    <form method="get" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="status" class="form-label">Filter by Status:</label>
+                <select name="status" id="status" class="form-select">
+                    <option th:value="${null}" th:text="'All'" selected></option>
+                    <option th:each="status : ${statuses}"
+                            th:value="${status}" th:text="${status}"/>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Created At</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Victims</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${notifications.isEmpty()}">
+            <td colspan="6" class="text-center">Not added yet</td>
+        </tr>
+        <tr th:each="notification : ${notifications}">
+            <td th:text="${notification.id}"></td>
+            <td th:text="${#temporals.format(notification.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${#strings.length(notification.description) > 50 ? #strings.substring(notification.description, 0, 50) + '...' : notification.description}"></td>
+            <td th:text="${notification.status}"></td>
+            <td th:text="${notification.victims.size()}"></td>
+            <td class="text-center">
+                <a th:href="@{/dashboard/notifications/details/{id}(id=${notification.id})}"
+                   class="btn btn-outline-primary btn-sm">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>

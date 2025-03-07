@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<head>
+    <title>Report Incident</title>
+</head>
+<body>
+<main layout:fragment="content" class="container w-75 my-5 flex-grow-1">
+    <h2 class="text-center">Report an Incident</h2>
+
+    <form action="/notifications/save" method="POST" th:object="${notification}">
+        <div class="mb-3">
+            <label for="description" class="form-label">Description of Incident</label>
+            <textarea th:field="*{description}" id="description" name="description" class="form-control" rows="4"
+                      required></textarea>
+        </div>
+
+        <div id="victims-section">
+            <h3 class="my-4">Victims</h3>
+            <div th:each="victim, iterStat : *{victims}" class="victim mb-3 border rounded p-3">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input th:field="*{victims[__${iterStat.index}__].firstName}" id="firstName" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input th:field="*{victims[__${iterStat.index}__].lastName}" id="lastName" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select th:field="*{victims[__${iterStat.index}__].gender}" id="gender" class="form-select" required>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="age" class="form-label">Age</label>
+                        <input th:field="*{victims[__${iterStat.index}__].age}" id="age" type="number" class="form-control" min="0" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="button" id="add-victim" class="btn btn-outline-primary">Add Victim</button>
+            <button type="button" id="remove-victim" class="btn btn-outline-danger">Remove Victim</button>
+        </div>
+
+        <div class="text-center my-4">
+            <button type="submit" class="btn btn-primary btn-lg">Submit Report</button>
+        </div>
+    </form>
+</main>
+
+<script layout:fragment="script">
+    document.getElementById('add-victim').addEventListener('click', function () {
+        const victimsSection = document.getElementById('victims-section');
+        const index = victimsSection.querySelectorAll('.victim').length;
+        const victimHtml = `
+      <div class="victim mb-3 border rounded p-3">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <label for="victims${index}.firstName" class="form-label">First Name</label>
+            <input id="victims${index}.firstName" type="text" class="form-control" name="victims[${index}].firstName" required>
+          </div>
+          <div class="col-md-4">
+            <label for="victims${index}.lastName" class="form-label">Last Name</label>
+            <input id="victims${index}.lastName" type="text" class="form-control" name="victims[${index}].lastName" required>
+          </div>
+          <div class="col-md-2">
+            <label for="victims${index}.gender" class="form-label">Gender</label>
+            <select id="victims${index}.gender" class="form-select" name="victims[${index}].gender" required>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="O">Other</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="victims${index}.age" class="form-label">Age</label>
+            <input id="victims${index}.age" type="number" class="form-control" name="victims[${index}].age" min="0" required>
+          </div>
+        </div>
+      </div>
+    `;
+        victimsSection.insertAdjacentHTML('beforeend', victimHtml);
+    });
+
+    document.getElementById('remove-victim').addEventListener('click', function () {
+        const victims = document.querySelectorAll('.victim');
+        if (victims.length > 1) {
+            victims[victims.length - 1].remove();
+        }
+    });
+</script>
+</body>
+</html>

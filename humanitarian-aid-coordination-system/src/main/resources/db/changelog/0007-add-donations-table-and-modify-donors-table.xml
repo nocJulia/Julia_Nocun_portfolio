@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0007-1" author="mikolajzakrzewski">
+        <addColumn tableName="donors">
+            <column name="personal_id" type="VARCHAR(16)"/>
+            <column name="gender" type="CHAR(1)"/>
+            <column name="birth_date" type="TIMESTAMP"/>
+            <column name="phone_number" type="VARCHAR(16)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="0007-2" author="mikolajzakrzewski">
+        <createTable tableName="donations">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="donation_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unit" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="donation_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="donor_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="donations"
+                baseColumnNames="donor_id"
+                constraintName="fk_donations_donor_id_donors_id"
+                referencedTableName="donors"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

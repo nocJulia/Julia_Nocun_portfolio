@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Messages Menu</title>
+</head>
+<body>
+<main layout:fragment="content" class="container w-75 my-5 flex-grow-1">
+    <h2 class="text-center">Messages Menu</h2>
+    <div class="text-center my-4">
+        <a href="/messages/user" class="btn btn-primary btn-lg">View Your Messages</a>
+        <a href="/messages/new" class="btn btn-secondary btn-lg">Send New Message</a>
+    </div>
+</main>
+</body>
+</html>

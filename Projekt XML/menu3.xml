@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="menu3.css" type="text/css" ?>
+<musicShop>
+    <albums>
+        <album id='1' musicLabelIdRef='label_1'>
+            <Title>Harry's House</Title>
+            <Singer singerIdRef='s1'>Harry Styles</Singer>
+            <releaseYear>2022</releaseYear>
+            <price currency="PLN">52.99</price>
+            <numberOfSongs>13</numberOfSongs>
+            <type>CD</type>
+            <genre>pop</genre>
+            <albumCode standard="HS/2022-GB/0001"/>
+            <version>2.0</version>
+        </album>
+        <album id='2' musicLabelIdRef='label_2'>
+            <Title>1-800-Oświecenie</Title>
+            <Singer singerIdRef='s2'>Taco Hemingway</Singer>
+            <releaseYear>2023</releaseYear>
+            <price currency="PLN">53.16</price>
+            <length>52:47</length>
+            <type>CD</type>
+            <genre>hip-hop</genre>
+            <albumCode standard="TH/2023-PL/0011"/>
+            <version>3.1</version>
+        </album>
+		<album id='3' musicLabelIdRef='label_3'>
+			<Title>Pocztówka z WWA, lato ’19</Title>
+			<Singer singerIdRef='s2'>Taco Hemingway</Singer>
+			<releaseYear>2019</releaseYear>
+			<price currency="PLN">43.99</price>
+			<length>49:57</length>
+			<type>CD</type>
+			<genre>hip-hop</genre>
+			<albumCode standard="TH/2019-PL/0021"/>
+			<version>1.1</version>
+		</album>
+		<album id='4' musicLabelIdRef='label_4'>
+			<Title>Ultraviolence</Title>
+			<Singer singerIdRef='s3'>Lana Del Rey</Singer>
+			<releaseYear>2014</releaseYear>
+			<price currency="PLN">209.90</price>
+			<length>51:24</length>
+			<type>vinyl</type>
+			<genre>indie-rock</genre>
+			<albumCode standard="LR/2014-US/2137"/>
+			<version>1.1</version>
+		</album>
+		<album id='5' musicLabelIdRef='label_4'>
+			<Title>Lust for Life</Title>
+			<Singer singerIdRef='s3'>Lana Del Rey</Singer>
+			<releaseYear>2017</releaseYear>
+			<price currency="PLN">212.74</price>
+			<length>71:56</length>
+			<type>vinyl</type>
+			<genre>dream pop</genre>
+			<albumCode standard="LR/2017-US/2100"/>
+			<version>1.1</version>
+		</album>
+		<album id='6' musicLabelIdRef='label_1'>
+			<Title>Harry Styles</Title>
+			<Singer singerIdRef='s1'>Harry Styles</Singer>
+			<releaseYear>2017</releaseYear>
+			<price currency="PLN">50.99</price>
+			<numberOfSongs>10</numberOfSongs>
+			<type>CD</type>
+			<genre>soft rock</genre>
+			<albumCode standard="HS/2017-GB/0341"/>
+			<version>1.0</version>
+		</album>
+		<album id='7' musicLabelIdRef='label_5'>
+			<Title>Mój dom</Title>
+			<Singer singerIdRef='s4'>Kortez</Singer>
+			<releaseYear>2017</releaseYear>
+			<price currency="PLN">53.74</price>
+			<numberOfSongs>14</numberOfSongs>
+			<type>CD</type>
+			<genre>alternative music</genre>
+			<albumCode standard="KR/2017-PL/3902"/>
+			<version>1.3</version>
+		</album>
+		<album id='8' musicLabelIdRef='label_5'>
+			<Title>Bumerang</Title>
+			<Singer singerIdRef='s4'>Kortez</Singer>
+			<releaseYear>2015</releaseYear>
+			<price currency="PLN">45.00</price>
+			<numberOfSongs>21</numberOfSongs>
+			<length>86:49</length>
+			<type>CD</type>
+			<genre>alternative music</genre>
+			<albumCode standard="KR/2015-PL/1912"/>
+			<version>2.4</version>
+		</album>
+		<album id='9' musicLabelIdRef='label_6'>
+			<Title>Lover</Title>
+			<Singer singerIdRef='s5'>Taylor Swift</Singer>
+			<releaseYear>2019</releaseYear>
+			<price currency="PLN">73.65</price>
+			<length>61:48</length>
+			<type>CD</type>
+			<genre>pop</genre>
+			<albumCode standard="TS/2019-US/2019"/>
+			<version>2.0</version>
+		</album>
+		<album id='10' musicLabelIdRef='label_6'>
+			<Title>folklore</Title>
+			<Singer singerIdRef='s5'>Taylor Swift</Singer>
+			<releaseYear>2020</releaseYear>
+			<price currency="PLN">72.44</price>
+			<numberOfSongs>17</numberOfSongs>
+			<length>63:29</length>
+			<type>CD</type>
+			<genre>pop</genre>
+			<albumCode standard="TS/2020-US/1220"/>
+			<version>2.1</version>
+		</album>
+		<album id='11' musicLabelIdRef='label_6'>
+			<Title>Midnights</Title>
+			<Singer singerIdRef='s5'>Taylor Swift</Singer>
+			<releaseYear>2022</releaseYear>
+			<price currency="PLN">62.50</price>
+			<length>44:02</length>
+			<type>CD</type>
+			<genre>synth pop</genre>
+			<albumCode standard="TS/2022-US/1000"/>
+			<version>1.1</version>
+		</album>
+		<album id='12' musicLabelIdRef='label_6'>
+			<Title>evermore</Title>
+			<Singer singerIdRef='s5'>Taylor Swift</Singer>
+			<releaseYear>2020</releaseYear>
+			<price currency="PLN">172.20</price>
+			<numberOfSongs>17</numberOfSongs>
+			<length>60:38</length>
+			<type>vinyl</type>
+			<genre>indie folk</genre>
+			<albumCode standard="TS/2020-US/0300"/>
+			<version>3.1</version>
+		</album>
+		<album id='13' musicLabelIdRef='label_7'>
+			<Title>Comfort and Happiness</Title>
+			<Singer singerIdRef='s6'>Dawid Posiadło</Singer>
+			<releaseYear>2013</releaseYear>
+			<price currency="PLN">34.99</price>
+			<numberOfSongs>12</numberOfSongs>
+			<type>CD</type>
+			<genre>pop</genre>
+			<albumCode standard="DP/2013-PL/3240"/>
+			<version>0.1</version>
+		</album>
+		<album id='14' musicLabelIdRef='label_7'>
+			<Title>Małomiasteczkowy</Title>
+			<Singer singerIdRef='s6'>Dawid Podsiadło</Singer>
+			<releaseYear>2018</releaseYear>
+			<price currency="PLN">45.99</price>
+			<length>40:11</length>
+			<type>CD</type>
+			<genre>pop</genre>
+			<albumCode standard="DP/2018-PL/3985"/>
+			<version>2.3</version>
+		</album>
+		<album id='15' musicLabelIdRef='label_7'>
+			<Title>Lata dwudzieste</Title>
+			<Singer singerIdRef='s6'>Dawid Podsiadło</Singer>
+			<releaseYear>2022</releaseYear>
+			<price currency="PLN">48.99</price>
+			<length>46:03</length>
+			<type>CD</type>
+			<genre>pop</genre>
+			<albumCode standard="DP/2022-PL/0205"/>
+			<version>1.9</version>
+		</album>
+		<album id='16' musicLabelIdRef='label_8'>
+			<Title>19</Title>
+			<Singer singerIdRef='s7'>Adele</Singer>
+			<releaseYear>2008</releaseYear>
+			<price currency="PLN">72.44</price>
+			<numberOfSongs>12</numberOfSongs>
+			<type>CD</type>
+			<genre>pop</genre>
+			<albumCode standard="AD/2008-US/1377"/>
+			<version>1.1</version>
+		</album>
+		<album id='17' musicLabelIdRef='label_8'>
+			<Title>21</Title>
+			<Singer singerIdRef='s7'>Adele</Singer>
+			<releaseYear>2010</releaseYear>
+			<price currency="PLN">79.00</price>
+			<length>48:00</length>
+			<type>CD</type>
+			<genre>soul</genre>
+			<albumCode standard="AD/2010-US/0321"/>
+			<version>1.0</version>
+		</album>
+		<album id='18' musicLabelIdRef='label_8'>
+			<Title>25</Title>
+			<Singer singerIdRef='s7'>Adele</Singer>
+			<releaseYear>2015</releaseYear>
+			<price currency="PLN">88.00</price>
+			<length>48:25</length>
+			<type>CD</type>
+			<genre>soul</genre>
+			<albumCode standard="AD/2015-US/1255"/>
+			<version>2.1</version>
+		</album>
+		<album id='19' musicLabelIdRef='label_9'>
+			<Title>30</Title>
+			<Singer singerIdRef='s7'>Adele</Singer>
+			<releaseYear>2021</releaseYear>
+			<price currency="PLN">79.99</price>
+			<length>58:14</length>
+			<type>CD</type>
+			<genre>jazz</genre>
+			<albumCode standard="AD/2021-US/2021"/>
+			<version>1.1</version>
+		</album>
+		<album id='20' musicLabelIdRef='label_10'>
+			<Title>A Girl Like Me</Title>
+			<Singer singerIdRef='s8'>Rihanna</Singer>
+			<releaseYear>2006</releaseYear>
+			<price currency="PLN">202.25</price>
+			<length>53:30</length>
+			<type>vinyl</type>
+			<genre>pop</genre>
+			<albumCode standard="RH/2006-US/1111"/>
+			<version>2.1</version>
+		</album>
+		<album id='21' musicLabelIdRef='label_10'>
+			<Title>Talk That Talk</Title>
+			<Singer singerIdRef='s8'>Rihanna</Singer>
+			<releaseYear>2011</releaseYear>
+			<price currency="PLN">29.99</price>
+			<length>55:57</length>
+			<type>CD</type>
+			<genre>pop</genre>
+			<albumCode standard="RH/2011-US/1287"/>
+			<version>1.0</version>
+		</album>
+		<album id='22' musicLabelIdRef='label_10'>
+			<Title>Anti</Title>
+			<Singer singerIdRef='s8'>Rihanna</Singer>
+			<releaseYear>2016</releaseYear>
+			<price currency="PLN">69.99</price>
+			<length>43:36</length>
+			<type>CD</type>
+			<genre>pop</genre>
+			<albumCode standard="RH/2016-US/0099"/>
+			<version>3.1</version>
+		</album>
+    </albums>
+
+    <musicLabels>
+        <musicLabel musicLabelId='label_1'>
+            <Name>Columbia Records</Name>
+            <YearFounded>1889</YearFounded>
+            <location>
+	            <country>United States</country>
+	            <countryCode codeStandard="ISO3166-1">USA</countryCode>
+	            <state>New York</state>
+	            <city>New York</city>
+	            <postalCode>91-275</postalCode>
+            </location>
+            <Foundator>
+                <FoundatorName>John Lee</FoundatorName>
+                <isAlive>false</isAlive>
+                <kids>3</kids>
+            </Foundator>
+        </musicLabel>
+        <musicLabel musicLabelId='label_2'>
+            <Name>2020</Name>
+            <YearFounded>2020</YearFounded>
+            <location>
+	            <country>Poland</country>
+	            <countryCode codeStandard="ISO3166-1">PL</countryCode>
+	            <state>Mazowieckie</state>
+	            <city>Warsaw</city>
+	            <postalCode>00-243</postalCode>
+            </location>
+            <Foundator>
+                <FoundatorName>Taco Hemingway</FoundatorName>
+                <isAlive>true</isAlive>
+                <kids>0</kids>
+            </Foundator>
+        </musicLabel>
+		<musicLabel musicLabelId='label_3'>
+			<Name>Asfalt Records</Name>
+			<YearFounded>1998</YearFounded>
+			<location>
+				<country>Poland</country>
+				<countryCode codeStandard="ISO3166-1">PL</countryCode>
+				<state>Mazowieckie</state>
+				<city>Warsaw</city>
+				<postalCode>00-056</postalCode>
+			</location>
+			<Foundator>
+				<FoundatorName>Marcin Grabski</FoundatorName>
+				<isAlive>true</isAlive>
+				<kids>2</kids>
+			</Foundator>
+		</musicLabel>
+		<musicLabel musicLabelId='label_4'>
+			<Name>Interscope Records</Name>
+			<YearFounded>1990</YearFounded>
+			<location>
+				<country>United States</country>
+				<countryCode codeStandard="ISO3166-1">USA</countryCode>
+				<state>California</state>
+				<city>Santa Monica</city>
+				<postalCode>21-436</postalCode>
+			</location>
+			<Foundator>
+				<FoundatorName>James „Jimmy” Iovine</FoundatorName>
+				<isAlive>true</isAlive>
+				<kids>3</kids>
+			</Foundator>
+		</musicLabel>
+		<musicLabel musicLabelId='label_5'>
+			<Name>Jazzboy</Name>
+			<YearFounded>2005</YearFounded>
+			<location>
+				<country>Poland</country>
+				<countryCode codeStandard="ISO3166-1">PL</countryCode>
+				<state>Mazowieckie</state>
+				<city>Warsaw</city>
+				<postalCode>03-977</postalCode>
+			</location>
+			<Foundator>
+				<FoundatorName>Paweł „Józek” Jóźwicki</FoundatorName>
+				<isAlive>true</isAlive>
+				<kids>2</kids>
+			</Foundator>
+		</musicLabel>
+		<musicLabel musicLabelId='label_6'>
+			<Name>Republic Records</Name>
+			<YearFounded>1995</YearFounded>
+			<location>
+				<country>United States</country>
+				<countryCode codeStandard="ISO3166-1">USA</countryCode>
+				<state>New York</state>
+				<city>New York</city>
+				<postalCode>02-067</postalCode>
+			</location>
+			<Foundator>
+				<FoundatorName>Monte Lipman</FoundatorName>
+				<isAlive>true</isAlive>
+				<kids>1</kids>
+			</Foundator>
+		</musicLabel>
+		<musicLabel musicLabelId='label_7'>
+			<Name>Sony Music Entertainment Poland</Name>
+			<YearFounded>1995</YearFounded>
+			<location>
+				<country>Poland</country>
+				<countryCode codeStandard="ISO3166-1">PL</countryCode>
+				<state>Mazowieckie</state>
+				<city>Warsaw</city>
+				<postalCode>00-351</postalCode>
+			</location>
+			<Foundator>
+				<FoundatorName>Alan Kowalski</FoundatorName>
+				<isAlive>true</isAlive>
+				<kids>3</kids>
+			</Foundator>
+		</musicLabel>
+		<musicLabel musicLabelId='label_8'>
+			<Name>XL</Name>
+			<YearFounded>1989</YearFounded>
+			<location>
+				<country>United Kingdom</country>
+				<countryCode codeStandard="ISO3166-1">GB</countryCode>
+				<state>-</state>
+				<city>London</city>
+				<postalCode>44-207</postalCode>
+			</location>
+			<Foundator>
+				<FoundatorName>Richard Russell</FoundatorName>
+				<isAlive>true</isAlive>
+				<kids>0</kids>
+			</Foundator>
+		</musicLabel>
+		<musicLabel musicLabelId='label_9'>
+			<Name>Columbia Records</Name>
+			<YearFounded>1889</YearFounded>
+			<location>
+				<country>United States</country>
+				<countryCode codeStandard="ISO3166-1">USA</countryCode>
+				<state>New York</state>
+				<city>New York</city>
+				<postalCode>23-051</postalCode>
+			</location>
+			<Foundator>
+				<FoundatorName>James Pho</FoundatorName>
+				<isAlive>false</isAlive>
+				<kids>1</kids>
+			</Foundator>
+		</musicLabel>
+		<musicLabel musicLabelId='label_10'>
+			<Name>Def Jam Recordings</Name>
+			<YearFounded>1984</YearFounded>
+			<location>
+				<country>United States</country>
+				<countryCode codeStandard="ISO3166-1">USA</countryCode>
+				<state>New York</state>
+				<city>New York</city>
+				<postalCode>23-051</postalCode>
+			</location>
+			<Foundator>
+				<FoundatorName>Russell Simmons</FoundatorName>
+				<isAlive>true</isAlive>
+				<kids>2</kids>
+			</Foundator>
+		</musicLabel>
+    </musicLabels>
+
+    <Artists>
+        <Artist singerId='s1'>
+            <Names>
+                <firstName>Harry</firstName>
+                <surname>Styles</surname>
+            </Names>
+            <dateOfBirth>1994-02-01</dateOfBirth>
+            <placeOfBirth>
+                <country>United Kingdom</country>
+                <countryCode codeStandard="ISO3166-1">GB</countryCode>
+                <state>Worcestershire</state>
+                <city>Redditch</city>
+                <postalCode>20-877</postalCode>
+            </placeOfBirth>
+            <parents>
+                <mother gender="female">Anne Twist</mother>
+                <father gender="male">Desmond Styles</father>
+            </parents>
+            <numberOfAlbums>3</numberOfAlbums>
+            <height unit='m'>1.83</height>
+            <voiceType voiceRef='vt1'/>
+        </Artist>
+        <Artist singerId='s2'>
+            <Names>
+                <firstName>Filip</firstName>
+                <surname>Szcześniak</surname>
+                <pseudonym>Taco Hemingway</pseudonym>
+            </Names>
+            <dateOfBirth>1990-07-29</dateOfBirth>
+            <placeOfBirth>
+                <country>Egypt</country>
+                <countryCode codeStandard="ISO3166-1">EGY</countryCode>
+                <state>Al-Kahira</state>
+                <city>Kair</city>
+                <postalCode>14-077</postalCode>
+            </placeOfBirth>
+            <parents>
+                <mother>-</mother>
+                <father>-</father>
+            </parents>
+            <numberOfAlbums>16</numberOfAlbums>
+            <height unit='m'>1.80</height>
+            <voiceType voiceRef='vt2'/>
+        </Artist>
+		<Artist singerId='s3'>
+			<Names>
+				<firstName>Elizabeth</firstName>
+				<surname>Woolridge Grant</surname>
+				<pseudonym>Lana Del Ray</pseudonym>
+			</Names>
+			<dateOfBirth>1985-06-21</dateOfBirth>
+			<placeOfBirth>
+				<country>United States</country>
+				<countryCode codeStandard="ISO3166-1">USA</countryCode>
+				<state>New York</state>
+				<city>New York</city>
+				<postalCode>33-007</postalCode>
+			</placeOfBirth>
+			<parents>
+				<mother gender="female">Patricia Ann Hill</mother>
+				<father gender="male">Robert England Grant</father>
+			</parents>
+			<numberOfAlbums>9</numberOfAlbums>
+			<height unit='m'>1.70</height>
+			<voiceType voiceRef='vt3'/>
+		</Artist>
+		<Artist singerId='s4'>
+			<Names>
+				<firstName>Łukasz</firstName>
+				<surname>Federkiewicz</surname>
+				<pseudonym>Kortez</pseudonym>
+			</Names>
+			<dateOfBirth>1989-06-24</dateOfBirth>
+			<placeOfBirth>
+				<country>Poland</country>
+				<countryCode codeStandard="ISO3166-1">PL</countryCode>
+				<state>Podkarpackie</state>
+				<city>Krosno</city>
+				<postalCode>38-400</postalCode>
+			</placeOfBirth>
+			<parents>
+				<mother>-</mother>
+				<father>-</father>
+			</parents>
+			<numberOfAlbums>4</numberOfAlbums>
+			<height unit='m'>1.90</height>
+			<voiceType voiceRef='vt1'/>
+		</Artist>
+		<Artist singerId='s5'>
+			<Names>
+				<firstName>Taylor</firstName>
+				<surname>Swift</surname>
+			</Names>
+			<dateOfBirth>1989-12-13</dateOfBirth>
+			<placeOfBirth>
+				<country>United States</country>
+				<countryCode codeStandard="ISO3166-1">USA</countryCode>
+				<state>Pennsylvania</state>
+				<city>Reading</city>
+				<postalCode>11-062</postalCode>
+			</placeOfBirth>
+			<parents>
+				<mother gender="female">Andrea Swift</mother>
+				<father gender="male">Scott Kingsley Swift</father>
+			</parents>
+			<numberOfAlbums>4</numberOfAlbums>
+			<height unit='m'>1.80</height>
+			<voiceType voiceRef='vt3'/>
+		</Artist>
+		<Artist singerId='s6'>
+			<Names>
+				<firstName>Dawid</firstName>
+				<surname>Podsiadło</surname>
+			</Names>
+			<dateOfBirth>1993-05-23</dateOfBirth>
+			<placeOfBirth>
+				<country>Poland</country>
+				<countryCode codeStandard="ISO3166-1">PL</countryCode>
+				<state>Śląsk</state>
+				<city>Dąbrowa Górnicza</city>
+				<postalCode>34-112</postalCode>
+			</placeOfBirth>
+			<parents>
+				<mother>-</mother>
+				<father>-</father>
+			</parents>
+			<numberOfAlbums>4</numberOfAlbums>
+			<height unit='m'>1.83</height>
+			<voiceType voiceRef='vt2'/>
+		</Artist>
+		<Artist singerId='s7'>
+			<Names>
+				<firstName>Adele Laurie</firstName>
+				<surname>Blue Adkins</surname>
+				<pseudonym>Adele</pseudonym>
+			</Names>
+			<dateOfBirth>1988-05-05</dateOfBirth>
+			<placeOfBirth>
+				<country>United Kingdom</country>
+				<countryCode codeStandard="ISO3166-1">GB</countryCode>
+				<state>-</state>
+				<city>London</city>
+				<postalCode>44-207</postalCode>
+			</placeOfBirth>
+			<parents>
+				<mother gender="female">Penny Adkins</mother>
+				<father gender="male">Mark Evans</father>
+			</parents>
+			<numberOfAlbums>4</numberOfAlbums>
+			<height unit='m'>1.76</height>
+			<voiceType voiceRef='vt3'/>
+		</Artist>
+		<Artist singerId='s8'>
+			<Names>
+				<firstName>Robyn Rihanna</firstName>
+				<surname>Fenty</surname>
+				<pseudonym>Rihanna</pseudonym>
+			</Names>
+			<dateOfBirth>1988-02-20</dateOfBirth>
+			<placeOfBirth>
+				<country>Barbados</country>
+				<countryCode codeStandard="ISO3166-1">BB</countryCode>
+				<state>Bridgetown</state>
+				<city>Saint Michael</city>
+				<postalCode>11-233</postalCode>
+			</placeOfBirth>
+			<parents>
+				<mother gender="female">Monica Braithwaite</mother>
+				<father gender="male">Ronald Fenty</father>
+			</parents>
+			<numberOfAlbums>8</numberOfAlbums>
+			<height unit='m'>1.73</height>
+			<voiceType voiceRef='vt4'/>
+		</Artist>
+    </Artists>
+
+    <voiceTypes>
+        <Type voiceId='vt1'>
+            <name>baritone</name>
+            <male>true</male>
+            <female>false</female>
+            <scale>A-f</scale>
+        </Type>
+        <Type voiceId='vt2'>
+            <name>tenor</name>
+            <male>true</male>
+            <female>false</female>
+            <scale>c-c</scale>
+        </Type>
+		<Type voiceId='vt3'>
+			<name>contralto</name>
+			<male>false</male>
+			<female>true</female>
+			<scale>c-d</scale>
+		</Type>
+		<Type voiceId='vt4'>
+			<name>mezzo-soprano</name>
+			<male>false</male>
+			<female>true</female>
+			<scale>g-h</scale>
+		</Type>
+    </voiceTypes>
+</musicShop>

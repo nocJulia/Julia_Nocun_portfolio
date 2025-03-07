@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+  <title>Send Message</title>
+</head>
+<body>
+<main layout:fragment="content" class="container w-75 my-5 flex-grow-1">
+  <h2 class="text-center">Send Message</h2>
+
+  <sec:authorize access="isAuthenticated()">
+    <form action="/messages/save" method="POST" th:object="${message}">
+      <div class="mb-3">
+        <label for="role" class="form-label">Role</label>
+        <select th:field="*{role.roleName}" id="role" class="form-select" required>
+          <option value="ADMIN">ADMIN</option>
+          <option value="VOLUNTEER">VOLUNTEER</option>
+          <option value="DONOR">DONOR</option>
+          <option value="LOGISTICIAN">LOGISTICIAN</option>
+          <option value="COORDINATOR">COORDINATOR</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="subject" class="form-label">Subject</label>
+        <input th:field="*{subject}" id="subject" type="text" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea th:field="*{content}" id="content" class="form-control" rows="5" required></textarea>
+      </div>
+
+      <div class="text-center my-4">
+        <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+      </div>
+    </form>
+  </sec:authorize>
+
+</main>
+</body>
+</html>

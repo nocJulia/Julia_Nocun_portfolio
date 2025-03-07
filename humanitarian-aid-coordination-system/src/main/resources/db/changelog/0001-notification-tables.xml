@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0001-1" author="john1903">
+        <createTable tableName="notifications">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(2000)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="0001-2" author="john1903">
+        <createTable tableName="victims">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="notification_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="CHAR(1)"/>
+            <column name="age" type="int"/>
+            <column name="phone_number" type="VARCHAR(16)"/>
+            <column name="email" type="VARCHAR(100)"/>
+            <column name="blood_type" type="VARCHAR(3)"/>
+            <column name="medical_condition" type="VARCHAR(1000)"/>
+            <column name="note" type="VARCHAR(1000)"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="victims"
+                baseColumnNames="notification_id"
+                constraintName="fk_victims_notification_id_notifications_id"
+                referencedTableName="notifications"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

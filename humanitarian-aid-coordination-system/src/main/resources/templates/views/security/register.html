@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<head>
+    <title>Register</title>
+</head>
+<body>
+<main layout:fragment="content" class="container my-5 flex-grow-1">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center mb-0">Create Account</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/register}" method="post" id="registrationForm" class="needs-validation" novalidate>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                <div class="invalid-feedback">First name is required</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                <div class="invalid-feedback">Last name is required</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            <div class="invalid-feedback">Please enter a valid email address</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
+                            <div class="invalid-feedback">
+                                Password must be at least 8 characters long and include at least one letter, one number, and one special character
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                            <div class="invalid-feedback">Passwords must match</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roles" class="form-label">Register as</label>
+                            <select class="form-select" id="roles" name="roles" required>
+                                <option value="DONOR">Donor</option>
+                                <option value="VOLUNTEER">Volunteer</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="gdpr" name="gdpr" required>
+                            <label class="form-check-label" for="gdpr">
+                                I agree to the processing of personal data provided in this document for realising the verification process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation).
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree to the GDPR terms
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a th:href="@{/login}" class="text-decoration-none">Already have an account? Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script layout:fragment="script">
+    // Form validation
+    (function () {
+        'use strict'
+        const form = document.getElementById('registrationForm');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const email = document.getElementById('email');
+
+        const validateEmail = () => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.setCustomValidity('Please enter a valid email address');
+                return false;
+            }
+            email.setCustomValidity('');
+            return true;
+        };
+
+        const validatePassword = () => {
+            if (password.value !== confirmPassword.value) {
+                confirmPassword.setCustomValidity('Passwords must match');
+                return false;
+            }
+            confirmPassword.setCustomValidity('');
+            return true;
+        };
+
+        email.addEventListener('input', validateEmail);
+        confirmPassword.addEventListener('input', validatePassword);
+        password.addEventListener('input', validatePassword);
+
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity() || !validateEmail() || !validatePassword()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    })()
+</script>
+</body>
+</html>

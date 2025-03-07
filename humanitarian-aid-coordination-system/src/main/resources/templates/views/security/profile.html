@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Profile Settings</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <div class="container">
+        <h2 class="mb-4">Profile Settings</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Personal Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/profile/update}" method="post" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName"
+                                       th:value="${user.firstName}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                       th:value="${user.lastName}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" th:value="${user.email}" readonly>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Change Password</h5>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/profile/change-password}" method="post" id="changePasswordForm"
+                              class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword"
+                                       name="currentPassword" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword" name="newPassword"
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
+                                <div class="form-text">
+                                    Password must be at least 8 characters long and include at least one letter,
+                                    one number, and one special character
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirmNewPassword"
+                                       name="confirmNewPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Account Management</h5>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/profile/deactivate}" method="post" class="mb-0">
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to deactivate your account? This action cannot be undone.')">
+                                Deactivate Account
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script layout:fragment="script">
+    // Password form validation
+    (function () {
+        'use strict'
+        const form = document.getElementById('changePasswordForm');
+        const newPassword = document.getElementById('newPassword');
+        const confirmNewPassword = document.getElementById('confirmNewPassword');
+
+        const validatePassword = () => {
+            if (newPassword.value !== confirmNewPassword.value) {
+                confirmNewPassword.setCustomValidity('Passwords must match');
+                return false;
+            }
+            confirmNewPassword.setCustomValidity('');
+            return true;
+        };
+
+        confirmNewPassword.addEventListener('input', validatePassword);
+        newPassword.addEventListener('input', validatePassword);
+
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity() || !validatePassword()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    })()
+</script>
+</body>
+</html>

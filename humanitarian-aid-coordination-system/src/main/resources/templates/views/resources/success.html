@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Success</title>
+    <style>
+        .success-container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .success-container h2 {
+            color: #28a745;
+        }
+        .success-container p {
+            color: #6c757d;
+            font-size: 18px;
+        }
+        .success-container a {
+            margin-top: 20px;
+            display: inline-block;
+            color: #ffffff;
+            background-color: #28a745;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .success-container a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <div class="success-container">
+        <h2>Success!</h2>
+        <p>Operation went successfully!</p>
+        <a href="/dashboard">Back to dashboard</a>
+    </div>
+</main>
+</body>
+</html>

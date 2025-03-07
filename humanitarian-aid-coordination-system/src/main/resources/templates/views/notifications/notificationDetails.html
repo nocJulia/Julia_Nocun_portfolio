@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Notification Details</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2 class="text-center">Notification Details</h2>
+
+    <div class="my-4">
+        <h4>Description of Incident</h4>
+        <p th:text="${notification.description}" class="border rounded p-3 bg-light"></p>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-md-6">
+            <h4>Status</h4>
+            <p th:text="${notification.status}" class="border rounded p-3 bg-light"></p>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Created At</h4>
+            <p th:text="${#temporals.format(notification.createdAt, 'yyyy-MM-dd HH:mm')}"
+               class="border rounded p-3 bg-light"></p>
+        </div>
+    </div>
+
+    <div class="my-4">
+        <h4>Victims</h4>
+        <div th:if="${notification.victims.size() > 0}">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="victim, iterStat : ${notification.victims}">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${victim.firstName}"></td>
+                    <td th:text="${victim.lastName}"></td>
+                    <td th:text="${victim.gender}"></td>
+                    <td th:text="${victim.age}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${notification.victims.size() == 0}" class="alert alert-info">
+            No victims reported.
+        </div>
+    </div>
+
+    <div th:unless="${notification.status.name() == 'COMPLETED'}" class="my-4">
+        <h4>Change Status</h4>
+        <form method="POST" th:action="@{/dashboard/notifications/{id}/change-status(id=${notification.id})}" class="border rounded p-3 bg-light">
+            <input type="hidden" name="id" th:value="${notification.id}" />
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select id="status" name="status" class="form-select" required>
+                    <option value="" disabled selected>Choose status</option>
+                    <option th:each="status : ${statuses}"
+                            th:value="${status}"
+                            th:text="${status}"
+                            th:if="${status.ordinal() > notification.status.ordinal()}">
+                    </option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update Status</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-center my-4">
+        <form th:unless="${notification.status.name() == 'COMPLETED'}" th:action="@{/dashboard/notifications/{id}/delete(id=${notification.id})}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-danger me-2">Delete</button>
+        </form>
+        <a th:href="@{/dashboard/notifications}" class="btn btn-outline-secondary">Back to List</a>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<head>
+    <title>Create Donor</title>
+</head>
+<body>
+<main layout:fragment="content" class="container w-75 my-5 flex-grow-1">
+    <h2 class="text-center">Create Donor</h2>
+
+    <form action="/donors/save" method="POST" th:object="${donor}">
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input th:field="*{firstName}" id="firstName" type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input th:field="*{lastName}" id="lastName" type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input th:field="*{email}" id="email" type="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input th:field="*{password}" id="password" type="password" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="organizationName" class="form-label">Organization Name (optional)</label>
+            <input th:field="*{organizationName}" id="organizationName" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number (optional)</label>
+            <input th:field="*{phoneNumber}" id="phoneNumber" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="personalId" class="form-label">Personal ID (optional)</label>
+            <input th:field="*{personalId}" id="personalId" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="birthDate" class="form-label">Birth Date (optional)</label>
+            <input th:field="*{birthDate}" id="birthDate" type="datetime-local" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="gender" class="form-label">Gender (optional)</label>
+            <select th:field="*{gender}" id="gender" class="form-select">
+                <option value="">Unspecified</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+            </select>
+        </div>
+
+        <div class="text-center my-4">
+            <button type="submit" class="btn btn-primary btn-lg">Save Donor</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

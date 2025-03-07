@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Allocate Transport</title>
+</head>
+<body>
+<main layout:fragment="content" class="container w-75 my-5 flex-grow-1">
+    <h2 class="text-center">Allocate Transport</h2>
+
+    <!-- Display success message after resource allocation -->
+    <div th:if="${message}" class="alert alert-success" role="alert">
+        <p th:text="${message}"></p>
+    </div>
+
+    <h3>Available Vehicles</h3>
+    <!-- Table to display all available vehicles -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Registry Number</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">Vehicle Type</th>
+            <th scope="col">Boot Capacity</th>
+            <th scope="col">Is Archived</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vehicle : ${vehicles}">
+            <td th:text="${vehicle.registryNumber}"></td>
+            <td th:text="${vehicle.brand}"></td>
+            <td th:text="${vehicle.model}"></td>
+            <td th:text="${vehicle.vehicleType}"></td>
+            <td th:text="${vehicle.bootCapacity}"></td>
+            <td th:text="${vehicle.isArchive ? 'Yes' : 'No'}"></td>
+            <td>
+                <a th:href="@{/transport/allocate/{vehicleId}(vehicleId=${vehicle.id})}?selectedDonation={selectedDonation}&selectedNotification={selectedNotification}"
+                   class="btn btn-primary">Allocate</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+</body>
+</html>

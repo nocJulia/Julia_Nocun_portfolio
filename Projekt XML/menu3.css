@@ -1,0 +1,235 @@
+musicShop::before {
+	content: "Projekt XML - Julia Nocuń, nr albumu 247744";
+	display: block;
+	text-align: center;
+	padding: 10px;
+	font-style: italic;
+}
+
+musicShop {
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+    background: #f4a58a;
+    background: linear-gradient(to right top, #1b1b1b, #f4a58a);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+albums::before {
+    content: "Dostępne albumy: ";
+    text-align: justify;
+    font-style: italic;
+    display: block;
+    margin-left: 5px;
+}
+
+album, musicLabel, Artist, Type {
+    padding: 10px;
+    display: inline-block;
+    width: 41%;
+    border: 2px whitesmoke solid;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+musicLabels::before {
+    content: "Wszystkie wytwórnie muzyczne:";
+    text-align: justify;
+    display: block;
+    margin-left: 5px;
+    font-style: italic;
+}
+
+Artists::before {
+    content: "Wszyscy wykonawcy: ";
+    text-align: justify;
+    display: block;
+    margin-left: 5px;
+    font-style: italic;
+}
+
+voiceTypes::before {
+    content: "Typy głosu: ";
+    text-align: justify;
+    display: block;
+    margin-left: 5px;
+    font-style: italic;
+}
+
+Title::before {
+    content: "Tytuł: ";
+}
+
+Singer::before {
+    content: "\A Wykonawca: ";
+    white-space: pre;
+}
+
+releaseYear::before {
+    content: "\A Rok wydania: ";
+    white-space: pre;
+}
+
+price::before {
+    content: "\A Cena: ";
+    white-space: pre;
+}
+
+price[currency]::after {
+    content: " " attr(currency);
+}
+
+numberOfSongs::before {
+    content: "\A Ilość utworów: ";
+    white-space: pre;
+}
+
+length::before {
+    content: "\A Czas trwania: ";
+    white-space: pre;
+}
+
+type::before {
+    content: "\A Rodzaj płyty: ";
+    white-space: pre;
+}
+
+genre::before {
+    content: "\A Gatunek muzyczny: ";
+    white-space: pre;
+}
+
+version::before {
+    content: "\A Wersja: ";
+    white-space: pre;
+}
+
+Name::before {
+    content: "Nazwa wytwórni: ";
+}
+
+YearFounded::before {
+    content: "\A Rok założenia: ";
+    white-space: pre;
+}
+
+location::before {
+    content: "\A Lokalizacja: ";
+    white-space: pre;
+}
+
+country::before {
+    content: "\A    Kraj: ";
+    white-space: pre;
+}
+
+countryCode::before {
+    content: "\A    Kod kraju: ";
+    white-space: pre;
+}
+
+state::before {
+    content: "\A    Stan: ";
+    white-space: pre;
+}
+
+city::before {
+    content: "\A    Miasto: ";
+    white-space: pre;
+}
+
+postalCode::before {
+    content: "\A    Kod pocztowy: ";
+    white-space: pre;
+}
+
+Foundator::before {
+    content: "\A Założyciel: ";
+    white-space: pre;
+}
+
+FoundatorName::before {
+    content: "\A    Imię i nazwisko: ";
+    white-space: pre;
+}
+
+isAlive::before {
+    content: "\A    Czy żyje: ";
+    white-space: pre;
+}
+
+kids::before {
+    content: "\A    Dzieci: ";
+    white-space: pre;
+}
+
+Names::before {
+    content: "Imię i nazwisko: ";
+}
+
+pseudonym::before {
+    content: "\A Pseudonim: ";
+    white-space: pre;
+}
+
+dateOfBirth::before {
+    content: "\A Data urodzenia: ";
+    white-space: pre;
+}
+
+dateOfBirth::after {
+    content: "\A Miejsce urodzenia: ";
+    white-space: pre;
+}
+
+parents::before {
+    content: "\A Rodzice: ";
+    white-space: pre;
+}
+
+mother::before {
+    content: "\A    Mama: ";
+    white-space: pre;
+}
+
+father::before {
+    content: "\A    Tata: ";
+    white-space: pre;
+}
+
+numberOfAlbums::before {
+    content: "\A Ilość wydanych albumów: ";
+    white-space: pre;
+}
+
+height::before {
+    content: "\A Wzrost: ";
+    white-space: pre;
+}
+
+height[unit="m"]::after {
+    content: " " attr(unit);
+    font-style: italic;
+}
+
+name::before {
+    content: "Typ głosu: ";
+}
+
+male::before {
+    content: "\A Głos męski: ";
+    white-space: pre;
+}
+
+female::before {
+    content: "\A Głos damski: ";
+    white-space: pre;
+}
+
+scale::before {
+    content: "\A Skala głosu: ";
+    white-space: pre;
+}

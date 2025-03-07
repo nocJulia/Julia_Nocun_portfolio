@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prezentacja zadania 2</title>
+    <link id="favicon" rel="icon" type="image/png" href="./img/JN.png"> 
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div class="container">
+    <h1 class="h1">Zadanie 2 - XML</h1>
+    
+        <p class="p2">Poniżej zaprezentowano zestaw elementów, atrybutów oraz typy danych wraz z wynikiem z walidatora dla dokumentu XML. 
+        Dokument XML odzwierciedla zasób sklepu muzycznego, w którym otrzymamy informację dotyczącą wybranych albumów muzycznych,
+        wytwórni muzycznych jak i samych artystów.</p>
+    <div>
+        <a href="./menu2.xml" download="menu2.xml" target="_blank" class="file">Pobierz plik XML</a>
+    </div>
+
+    <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;}
+        .tg td{border-color:#f4a58a;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+          overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg th{border-color:#f4a58a;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+          font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg .tg-0lax{text-align:center;vertical-align:top}
+        </style>
+        <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax">ELEMENT</th>
+            <th class="tg-0lax">PODELEMENTY</th>
+            <th class="tg-0lax">ATRYBUTY</th>
+            <th class="tg-0lax">TYP</th>
+            <th class="tg-0lax">UWAGI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">Music Shop</td>
+            <td class="tg-0lax">albums, musicLabels, Artists, VoiceTypes</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">element główny dokumentu</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">albums</td>
+            <td class="tg-0lax">album</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">musi posiadać co najmniej jeden element album</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">musicLabels</td>
+            <td class="tg-0lax">musicLabel</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">musi posiadać co najmniej jeden element musicLabel</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Artists</td>
+            <td class="tg-0lax">Artist</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">musi posiadać co najmniej jeden element Artist</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">VoiceTypes</td>
+            <td class="tg-0lax">Type</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">musi posiadać co najmniej jeden element Type</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">album</td>
+            <td class="tg-0lax">Title, Singer, releaseYear, price, numberOfSongs, length, type, genre, albumCode, version</td>
+            <td class="tg-0lax">id(string, unique, required), musicLabelIdRef(referencja do klucza)</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">musicLabel</td>
+            <td class="tg-0lax">Name, YearFounded, location, Foundator</td>
+            <td class="tg-0lax">musicLabelId (klucz)</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Artist</td>
+            <td class="tg-0lax">Names, dateOfBirth, placeOfBirth, parents, numberOfAlbums, height, voiceType</td>
+            <td class="tg-0lax">singerId (klucz)</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Type</td>
+            <td class="tg-0lax">name, male, female, scale</td>
+            <td class="tg-0lax">voiceId (klucz)</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Title</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Singer</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">singerIdRef (referencja do klucza)</td>
+            <td class="tg-0lax">complexType (base: string)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">releaseYear</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">gYear</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">price</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">currency (string, optional)</td>
+            <td class="tg-0lax">complexType (wykorzystano również aspekty wzorca - totalDigits, fractionDigits)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">numberOfSongs</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">nofsType - wykorzystano aspekty wzorca - min oraz maxInclusive</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">length</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">lengthType - wykorzystano aspekty wzorca - pattern</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">type</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">formatType- wykorzystano aspekty wzorca - enumeration</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">genre</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">genreType - wykorzystano aspekty wzorca - enumeration</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">albumCode</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">standard (wykorzystano aspekty wzorca - pattern, required)</td>
+            <td class="tg-0lax">complexType</td>
+            <td class="tg-0lax">element bez zawartości, posiada jedynie atrybut</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">version</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">versionType - wykorzystano aspekty wzorca - totalDigits, fractionDigits</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Name</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">YearFounded</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">gYear</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">location</td>
+            <td class="tg-0lax">country, countryCode, state, city, postalCode</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">country</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">countryCode</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">codeStandard (wykorzystano aspekty wzorca - pattern, required) </td>
+            <td class="tg-0lax">complexType (base:string)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">state</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">city</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">postalCode</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">postalType -wykorzystano aspekty wzorca - pattern</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Foundator</td>
+            <td class="tg-0lax">FoundatorName, isAlive, kids</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">FoundatorName</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">isAlive</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">tfType wykorzystano aspekty wzorca - enumeration</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">kids</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">int</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Names</td>
+            <td class="tg-0lax">firstName, surname, pseudonym</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">element pseudonym jest opcjonalny</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">firstName</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">surname</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">pseudonym</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">dateOfBirth</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">date</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">placeOfBirth</td>
+            <td class="tg-0lax">country, countryCode, state, city, postalCode</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">parents</td>
+            <td class="tg-0lax">mother, father</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">complexType (sequence)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">mother</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">gender (wykorzystano aspekt wzorca - enumeration)</td>
+            <td class="tg-0lax">complexType (base: string)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">father</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">gender (wykorzystano aspekt wzorca - enumeration)</td>
+            <td class="tg-0lax">complexType (base: string)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">numberOfAlbums</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">int</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">height</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">unit (string, required)</td>
+            <td class="tg-0lax">heightType (wykorzystano aspekt wzorca - totalDigits, fractionDigits)</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">voiceType</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">voiceRef (referencja do klucza, required)</td>
+            <td class="tg-0lax">complexType (base: string)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">name</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">string</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">female</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">tfType</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">female</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">tfType</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+
+          <tr>
+            <td class="tg-0lax">scale</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">-</td>
+            <td class="tg-0lax">scaleType (wykorzystano aspekty wzorca - pattern)</td>
+            <td class="tg-0lax">-</td>
+          </tr>
+        </tbody>
+        </table>
+
+        <div class="validation-container2">
+            <img src="./validation/xml_validate.png" alt="Wynik walidacji dokumentu XML" class="validation2">
+        </div>
+        
+    </div>
+</body>
+</html>

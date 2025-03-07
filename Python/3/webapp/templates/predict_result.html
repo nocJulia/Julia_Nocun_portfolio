@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Prediction Result</h1>
+<p>The predicted category is: <strong>{{ category }}</strong></p>
+<div class="button-container">
+    <a href="{{ url_for('predict') }}" class="btn btn-primary">Make another prediction</a>
+    <a href="{{ url_for('home') }}" class="btn btn-secondary">Return to Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Create Vehicle</title>
+</head>
+<body>
+<main layout:fragment="content" class="container w-75 my-5 flex-grow-1">
+    <h2 class="text-center">Create Vehicle</h2>
+    <form action="/dashboard/vehicles/create" method="POST" th:object="${vehicle}">
+        <div class="mb-3">
+            <label for="registryNumber" class="form-label">Registry Number</label>
+            <input th:field="*{registryNumber}" id="registryNumber" type="text" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="brand" class="form-label">Brand</label>
+            <input th:field="*{brand}" id="brand" type="text" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="model" class="form-label">Model</label>
+            <input th:field="*{model}" id="model" type="text" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="vehicleType" class="form-label">Vehicle Type</label>
+            <select th:field="*{vehicleType}" id="vehicleType" class="form-control" required>
+                <option value="CAR">Car</option>
+                <option value="MINIVAN">MINIVAN</option>
+                <option value="VAN">VAN</option>
+                <option value="CARGO">CARGO</option>
+                <option value="TRUCK">TRUCK</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="bootCapacity" class="form-label">Boot Capacity</label>
+            <input th:field="*{bootCapacity}" id="bootCapacity" type="number" class="form-control" min="1">
+            <div class="text-danger" th:if="${#fields.hasErrors('bootCapacity')}" th:errors="*{bootCapacity}"></div>
+        </div>
+
+        <div class="text-center my-4">
+            <button type="submit" class="btn btn-primary btn-lg">Create Vehicle</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

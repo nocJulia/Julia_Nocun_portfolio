@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Data Point</h1>
+<form action="{{ url_for('add') }}" method="post">
+    <label for="feature1">Feature 1:</label>
+    <input type="text" name="feature1" required>
+    <label for="feature2">Feature 2:</label>
+    <input type="text" name="feature2" required>
+    <label for="category">Category:</label>
+    <input type="text" name="category" required>
+    <button type="submit">Add</button>
+</form>
+{% endblock %}
+

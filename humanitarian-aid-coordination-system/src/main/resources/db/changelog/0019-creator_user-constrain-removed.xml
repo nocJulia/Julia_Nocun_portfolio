@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0019-1" author="john1903">
+        <dropForeignKeyConstraint baseTableName="reports"
+                                  constraintName="fk_reports_report_creators"/>
+        <delete tableName="report_creators"/>
+    </changeSet>
+    <changeSet id="0019-2" author="john1903">
+        <addForeignKeyConstraint baseTableName="reports"
+                                 baseColumnNames="authority_id"
+                                 constraintName="authority_id_constraint"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<main layout:fragment="content" class="container my-5 flex-grow-1">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center mb-0">Sign In</h3>
+                </div>
+                <div class="card-body">
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        You have been logged out.
+                    </div>
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+<!--                        <div class="mb-3 form-check">-->
+<!--                            <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me">-->
+<!--                            <label class="form-check-label" for="remember-me">Remember me</label>-->
+<!--                        </div>-->
+                        <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a th:href="@{/register}" class="text-decoration-none">Don't have an account? Register</a>
+                    </div>
+                    <div class="text-center mt-2">
+                        <a th:href="@{/forgot-password}" class="text-decoration-none">Forgot password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script layout:fragment="script">
+    // Auto logout after 5 minutes of inactivity
+    let timeout;
+    function resetTimeout() {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            window.location.href = '/logout';
+        }, 5 * 60 * 1000);
+    }
+
+    document.addEventListener('mousemove', resetTimeout);
+    document.addEventListener('keypress', resetTimeout);
+    resetTimeout();
+
+    // Disable login form after 3 failed attempts
+    let failedAttempts = parseInt(localStorage.getItem('failedAttempts') || '0');
+    let lastAttemptTime = parseInt(localStorage.getItem('lastAttemptTime') || '0');
+
+    if (failedAttempts >= 3) {
+        const waitTime = 5 * 60 * 1000; // 5 minutes
+        const timeElapsed = Date.now() - lastAttemptTime;
+
+        if (timeElapsed < waitTime) {
+            const form = document.querySelector('form');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                localStorage.setItem('failedAttempts', '0');
+            }, waitTime - timeElapsed);
+        } else {
+            localStorage.setItem('failedAttempts', '0');
+        }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('error')) {
+        failedAttempts++;
+        localStorage.setItem('failedAttempts', failedAttempts.toString());
+        localStorage.setItem('lastAttemptTime', Date.now().toString());
+    }
+</script>
+</body>
+</html>

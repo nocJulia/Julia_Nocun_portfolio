@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+  <title>User Messages</title>
+</head>
+<body>
+<main layout:fragment="content" class="container w-75 my-5 flex-grow-1">
+  <h2 class="text-center">Your Messages</h2>
+
+  <sec:authorize access="isAuthenticated()">
+    <div class="mb-3">
+      <input type="text" id="filterInput" class="form-control" placeholder="Filter by subject">
+      <button class="btn btn-primary mt-2" onclick="filterMessages()">Filter</button>
+      <button class="btn btn-secondary mt-2 ms-2" onclick="clearFilter()">Clear Filter</button>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Role</th>
+        <th>Subject</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody id="messageTableBody">
+      <tr th:if="${messages.isEmpty()}">
+        <td colspan="5" class="text-center">No messages found</td>
+      </tr>
+      <tr th:each="message : ${messages}" th:classappend="${messageStatuses[message.id] == 'UNREAD'} ? 'unread'">
+        <td th:text="${message.role.roleName}"></td>
+        <td th:text="${message.subject}"></td>
+        <td th:text="${#temporals.format(message.date, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${messageStatuses[message.id]}"></td>
+        <td>
+          <button class="btn btn-primary" th:onclick="'openMessage(' + ${message.id} + ')'">OPEN</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </sec:authorize>
+
+  <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="messageModalLabel">Message Content</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="messageContent">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="reloadPage()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openMessage(messageId) {
+      console.log("openMessage called with messageId:", messageId);
+      fetch('/messages/' + messageId)
+              .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch message');
+                return response.json();
+              })
+              .then(data => {
+                console.log("Message fetched:", data);
+                document.getElementById('messageContent').innerText = data.content;
+
+                const messageModalElement = document.getElementById('messageModal');
+                const messageModal = new bootstrap.Modal(messageModalElement);
+
+                console.log("Opening modal...");
+                messageModal.show();
+
+                return fetch('/messages/status/update', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                  },
+                  body: new URLSearchParams({
+                    messageId: messageId,
+                    status: 'READ'
+                  })
+                });
+              })
+              .then(() => {
+                console.log("Status updated");
+              })
+              .catch(error => console.error('Error:', error));
+    }
+
+    function reloadPage() {
+      location.reload();
+    }
+
+    function filterMessages() {
+      const filterInput = document.getElementById('filterInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#messageTableBody tr');
+      rows.forEach(row => {
+        const subject = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
+        // Filtrowanie po subject
+        if (subject.includes(filterInput)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    function clearFilter() {
+      document.getElementById('filterInput').value = '';
+      filterMessages();
+    }
+  </script>
+
+</main>
+
+</body>
+</html>

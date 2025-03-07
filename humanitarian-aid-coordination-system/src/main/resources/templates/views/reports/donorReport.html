@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Donor Report</title>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2>Generate Donor Report</h2>
+
+    <form th:action="@{/dashboard/reports/donors}" method="post" class="mb-4">
+        <div class="mb-3">
+            <label for="userId" class="form-label">User ID</label>
+            <input type="number" id="userId" name="userId" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Report</button>
+    </form>
+
+</main>
+</body>
+</html>

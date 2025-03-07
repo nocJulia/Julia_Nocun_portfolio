@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboardLayout}">
+<head>
+    <title>Transport Management</title>
+    <style>
+        .table-container {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        .no-data {
+            text-align: center;
+            font-weight: bold;
+            color: #6c757d;
+        }
+        .btn-finish {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-finish:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+<main layout:fragment="content" class="col p-4 flex-grow-1">
+    <h2>Transport Management</h2>
+    <div class="table-container mt-4">
+        <h3>All Transports</h3>
+        <div th:if="${allTransports.isEmpty()}">
+            <p class="no-data">No transport is running :)</p>
+        </div>
+        <table class="table table-bordered table-striped" th:if="${!allTransports.isEmpty()}">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Vehicle</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transport : ${allTransports}">
+                <td th:text="${transport.id}"></td>
+                <td th:text="${transport.startTime}"></td>
+                <td th:text="${transport.endTime}"></td>
+                <td th:text="${transport.vehicle.registryNumber}"></td>
+                <td>
+                    <form action="/dashboard/transports/finish" method="post">
+                        <input type="hidden" name="transportId" th:value="${transport.id}">
+                        <button type="submit" class="btn-finish">Finish</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

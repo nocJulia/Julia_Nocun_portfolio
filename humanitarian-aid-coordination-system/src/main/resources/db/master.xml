@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <include file="changelog/0001-notification-tables.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0002-resource-allocation-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0003-security-tables.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0004-volunteers-and-notification-proxy-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0005-add-location-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0006-add-location_id-to-notifications-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0007-add-donations-table-and-modify-donors-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0008-adding-donation_id_to_allocated_resources_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0009-logisticians-table-created.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0010-add-task-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0011-localization-table-update.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0012-message-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0013-remove-unit-and-add-currency-weight-quantity-columns-to-donations-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0014-remove-quantity-column-from-donations-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0015-modification-of-notification-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0016-new-column-location_id-in-volunteers-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0017-reports-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0018-insert-new-role-to-roles-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0019-creator_user-constrain-removed.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0020-admin-user-created.xml" relativeToChangelogFile="true" context="dev"/>
+    <include file="changelog/0021-remove-task-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0022-create-vehicle.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0023-create-transport.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0024-add-transport-id-column-to-allocated-resources.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0025-add-location-to-logistician.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0026-new-roles.xml" relativeToChangelogFile="true" context="dev"/>
+    <include file="changelog/0027-message-status-table.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

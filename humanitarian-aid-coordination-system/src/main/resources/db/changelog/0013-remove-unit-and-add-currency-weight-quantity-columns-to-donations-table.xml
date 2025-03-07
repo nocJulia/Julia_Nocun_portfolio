@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0013-1" author="mikolajzakrzewski">
+        <dropColumn tableName="donations" columnName="unit"/>
+    </changeSet>
+
+    <changeSet id="0013-2" author="mikolajzakrzewski">
+        <addColumn tableName="donations">
+            <column name="currency" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weight" type="DECIMAL(10, 2)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="quantity" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
